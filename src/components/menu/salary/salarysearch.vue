@@ -1,0 +1,219 @@
+<template>
+  <div>
+    <div>
+      <el-input style="width: 200px;" placeholder="请输入手机号查询" v-model.string="searchForm.userPhone" auto-complete="off"></el-input>
+      <el-date-picker
+        value-format="yyyy"
+        v-model="searchForm.year"
+        type="year"
+        placeholder="选择年">
+      </el-date-picker>
+      <el-date-picker
+        value-format="MM"
+        v-model="searchForm.month"
+        type="month"
+        placeholder="选择月">
+      </el-date-picker>
+      <el-button @click="searchSalary" type="primary" style="margin-left: 50px;">搜索</el-button>
+    </div>
+    <el-table
+      :data="seeList"
+      style="width: 100%">
+      <el-table-column
+        prop="detailId"
+        label="序号"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="department"
+        label="部门"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="position"
+        label="岗位"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="userName"
+        label="姓名"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="bankCard"
+        label="卡号"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="basicWage"
+        label="基本工资"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="postWage"
+        label="岗位工资"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="allowanceWage"
+        label="职位津贴"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="subsidyWage"
+        label="职位补贴"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="seniorityWage"
+        label="工资工龄"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="dutyWage"
+        label="值班补助"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="standWage"
+        label="代办费"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="mealWage"
+        label="办公餐补"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="teacherMealWage"
+        label="教师餐补"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="otherWage"
+        label="其他收入"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="deductionWage"
+        label="提成"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="performanceWage"
+        label="绩效"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="informStandard"
+        label="扣绩效"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="deductWage"
+        label="扣缺勤"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="salary"
+        label="应发金额"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="socialSecurity"
+        label="扣社保"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="accumulationFund"
+        label="扣公积金"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="dollarsWelfare"
+        label="已发课酬及福利"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="taxAmount"
+        label="计税金额"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="taxRate"
+        label="税率"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="deductTax"
+        label="应扣个税"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="replaceDeduct"
+        label="代扣"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="takeHomePay"
+        label="实发金额"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        prop="userPhone"
+        label="手机号码"
+        align="center">
+      </el-table-column>
+    </el-table>
+  </div>
+</template>
+
+<script>
+
+  export default {
+    data() {
+      return {
+        formLabelWidth:'120px',
+        pagesize:10,
+        pagenum:1,
+        listtotal:0,
+        seeList:[],
+        searchForm:{
+          userPhone:'',
+          year:'',
+          month:'',
+          pageNum:1,
+          pageSize:10,
+        },
+        seeFlag:false,
+      }
+    },
+    created (){
+    },
+    methods:{
+      searchSalary(){
+        this.getSalaryListByIdfn()
+      },
+      handleCurrentChangeSys(v){
+        this.pagenum = v;
+        this.getSalaryList();
+      },
+
+      getSalaryListByIdfn(){
+        this.searchForm.pageNum = this.pagenum;
+        this.searchForm.pageSize = 10;
+        this.http.post('/querySalaryListByPhoneOrTime',this.searchForm).then(res=>{
+          if(res.code == 0){
+            this.seeList = res.data;
+          }else{
+            this.seeList = [];
+          }
+        })
+      },
+    },
+  }
+</script>
+
+<style>
+
+</style>
