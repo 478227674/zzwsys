@@ -85,8 +85,8 @@
     },
     created(){
 
-      this.roleId = JSON.parse(localStorage.getItem('diruserinfo')).roleId;
-      this.searchFrom.schoolId = JSON.parse(localStorage.getItem('diruserinfo')).schoolId;
+      this.roleId = JSON.parse(localStorage.getItem('diruserinfosys')).roleId;
+      this.searchFrom.schoolId = JSON.parse(localStorage.getItem('diruserinfosys')).schoolId;
       this.getOrdersList();
 
     },

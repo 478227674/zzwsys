@@ -103,8 +103,8 @@
       shareUrl(data){
 
         this.shareFlag = true;
-        var user = JSON.parse(localStorage.getItem('diruserinfo'));
-        var inviteCode = JSON.parse(localStorage.getItem('diruserinfo')).inviteCode || '';
+        var user = JSON.parse(localStorage.getItem('diruserinfosys'));
+        var inviteCode = JSON.parse(localStorage.getItem('diruserinfosys')).inviteCode || '';
         var shareUrl = 'http://qk.taiqiedu.com/h5/html/';
         this.productUrl = '';
         if(data.imageType == 2){

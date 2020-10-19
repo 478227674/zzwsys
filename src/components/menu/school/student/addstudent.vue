@@ -449,7 +449,7 @@
         this.getstudentList();
         this.getplanList();
         this.getEndTime();
-        var user = JSON.parse(localStorage.getItem('diruserinfo'));
+        var user = JSON.parse(localStorage.getItem('diruserinfosys'));
         if(user.isMaster == 0){ //判断是否是校长
           this.searchForm.createSaleId = user.suserId;
         }
@@ -504,7 +504,7 @@
       //初始化页面数据
       inniPageData(){
         //获取分校课程
-        this.http.post('/school/querySchoolProductPageList',{schoolId:JSON.parse(localStorage.getItem('diruserinfo')).schoolId,pageSize:1000}).then(res=>{
+        this.http.post('/school/querySchoolProductPageList',{schoolId:JSON.parse(localStorage.getItem('diruserinfosys')).schoolId,pageSize:1000}).then(res=>{
           if(res.code == 0){
             this.schoolProductList = res.data.list;
           }
@@ -684,7 +684,7 @@
 //        }else{
 //          this.studentobj.productType = 8;
 //        }
-        this.studentobj.schoolId = JSON.parse(localStorage.getItem('diruserinfo')).schoolId
+        this.studentobj.schoolId = JSON.parse(localStorage.getItem('diruserinfosys')).schoolId
         this.http.post('/school/saveSchoolStudent',this.studentobj).then(res=>{
           if(res.code == 0){
             this.$successMessage('添加学员成功')
@@ -729,7 +729,7 @@
         }else{
           this.editstudent.productType = 8;
         }
-        this.editstudent.schoolId = JSON.parse(localStorage.getItem('diruserinfo')).schoolId
+        this.editstudent.schoolId = JSON.parse(localStorage.getItem('diruserinfosys')).schoolId
         this.http.post('/school/updateSchoolStudent',this.editstudent ).then(res=>{
           if(res.code == 0){
             this.$successMessage('编辑学员成功')

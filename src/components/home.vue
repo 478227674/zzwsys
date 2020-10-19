@@ -1,7 +1,7 @@
 <template>
   <el-container class="root_container">
 
-    <el-aside class="menuside" width="200px"><v-menu></v-menu></el-aside>
+    <el-aside class="menuside" width="250px"><v-menu></v-menu></el-aside>
 
     <el-container>
       <el-header><v-head @on-show="showAbout()"></v-head></el-header>

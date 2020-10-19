@@ -88,7 +88,7 @@
       }
     },
     created(){
-      var user = JSON.parse(localStorage.getItem('diruserinfo'));
+      var user = JSON.parse(localStorage.getItem('diruserinfosys'));
       if(user.schoolId){
         this.sschoolId = user.schoolId;
       }
@@ -149,7 +149,7 @@
       },
       //获取已分配列表
       getuserAssignList(){
-        var user = JSON.parse(localStorage.getItem('diruserinfo'))
+        var user = JSON.parse(localStorage.getItem('diruserinfosys'))
         this.searchForm.pageNum = this.pagenum;
         this.searchForm.pageSize = 10;
         this.searchForm.saleId = user.suserId;

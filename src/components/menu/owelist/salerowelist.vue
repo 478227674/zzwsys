@@ -198,10 +198,10 @@
       })
         this.getOrdersList();
         this.getSalerList();
-        var user = JSON.parse(localStorage.getItem('diruserinfo'));
+        var user = JSON.parse(localStorage.getItem('diruserinfosys'));
         this.roleId = user.roleId;
         this.schoolId = user.schoolId;
-        this.searchFrom.createSaleId = JSON.parse(localStorage.getItem('diruserinfo')).suserId;
+        this.searchFrom.createSaleId = JSON.parse(localStorage.getItem('diruserinfosys')).suserId;
         this.getMoneyHistoryList();
     },
     methods:{

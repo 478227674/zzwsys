@@ -68,9 +68,9 @@
       }
     },
     created(){
-      if(localStorage.getItem('diruserinfo')){
-        this.name = JSON.parse(localStorage.getItem('diruserinfo')).userName||'管理员';
-        this.form.id = JSON.parse(localStorage.getItem('diruserinfo')).suserId
+      if(localStorage.getItem('diruserinfosys')){
+        this.name = JSON.parse(localStorage.getItem('diruserinfosys')).userName||'管理员';
+        this.form.id = JSON.parse(localStorage.getItem('diruserinfosys')).suserId
       }else{
         this.$router.replace('/login')
       }
@@ -101,7 +101,7 @@
         });
       },
       openLogin(){
-        localStorage.removeItem('diruserinfo')
+        localStorage.removeItem('diruserinfosys')
         this.$router.replace('/userlogin')
         location.reload();
       },

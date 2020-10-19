@@ -342,7 +342,7 @@
       }
     },
     created(){
-      var user = JSON.parse(localStorage.getItem('diruserinfo'));
+      var user = JSON.parse(localStorage.getItem('diruserinfosys'));
       this.initPage();
       this.getWaitList();
       this.getAlreadyList();

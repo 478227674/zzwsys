@@ -15,7 +15,7 @@ export default {
     },
     data() {
       return{
-        isRouterAlive: true                    //控制视图是否显示的变量
+        isRouterAlive: true //控制视图是否显示的变量
       }
     },
     methods: {

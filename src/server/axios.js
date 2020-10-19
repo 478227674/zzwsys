@@ -66,7 +66,7 @@ import QS from 'qs';
 import store from '../store';
 import axios from 'axios'
 import { Message } from 'element-ui';  //element库的消息提示，可以不用
-var token = localStorage.getItem('diruserinfo') ? JSON.parse(localStorage.getItem('diruserinfo')).token : '';
+var token = localStorage.getItem('diruserinfosys') ? JSON.parse(localStorage.getItem('diruserinfosys')).token : '';
   //创建axios实例
 var service = axios.create({
   baseURL: configUrl.baseUrl,
@@ -130,10 +130,10 @@ export default {
                 message: '登录超时，请退出重新登录',
                 type: 'error'
               })
-              localStorage.clear('diruserinfo')
+              localStorage.clear('diruserinfosys')
               // return;
               setTimeout(function () {
-                router.push('/login')
+                router.push('/userlogin')
                 location.reload();
               },1000)
               requestFlag = false;
@@ -148,7 +148,6 @@ export default {
             return;
           }
         }
-
         if(res.data.code == 2){
           Message({
             showClose: true,
@@ -168,7 +167,6 @@ export default {
           });
         } else {
           reject(err.response);
-          console.log(err.response, '服务器异常')
         }
       })
 

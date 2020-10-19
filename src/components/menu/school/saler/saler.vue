@@ -154,7 +154,7 @@
     },
     created(){
 
-        var user = JSON.parse(localStorage.getItem('diruserinfo'));
+        var user = JSON.parse(localStorage.getItem('diruserinfosys'));
         if(user.schoolId){
             this.searchForm.schoolId = user.schoolId;
         }
@@ -221,7 +221,7 @@
           this.$errorMessage('请填写密码')
           return;
         }
-        var user = JSON.parse(localStorage.getItem('diruserinfo'))
+        var user = JSON.parse(localStorage.getItem('diruserinfosys'))
         this.saleobj.schoolId = user.schoolId;
         // this.saleobj.roleId = user.roleId;
         this.http.post('/school/saveSchoolSale',this.saleobj).then(res=>{
@@ -246,7 +246,7 @@
           this.$errorMessage('请填写密码')
           return;
         }
-        var user = JSON.parse(localStorage.getItem('diruserinfo'))
+        var user = JSON.parse(localStorage.getItem('diruserinfosys'))
         this.editsaler.schoolId = user.schoolId;
         this.editsaler.roleId = '12';
         this.http.post('/school/updateSchoolSale',this.editsaler ).then(res=>{

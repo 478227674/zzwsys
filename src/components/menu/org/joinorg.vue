@@ -7,12 +7,21 @@
             {required: true, message: '机构名称不能为空'},
           ]"
         >
-          <el-input v-model.string="form.orgName" auto-complete="off"></el-input>
+          <el-input disabled v-model.string="form.orgName" auto-complete="off"></el-input>
         </el-form-item>
-        <span v-if="isCheck == 0">未审核</span>
-        <span v-if="isCheck == 1">已审核</span>
+        <span style="line-height: 40px;margin-left: 10px;" v-if="isCheck == 0">未审核</span>
+        <span style="line-height: 40px;margin-left: 10px;" v-if="isCheck == 1">已审核</span>
+        <el-button  v-if="isCheck == 1" type="primary" @click="openOrgIndex" size="small" style="height: 40px;margin-left: 20px;">进入发布课程</el-button>
       </div>
-      <el-form-item class="input-width" label="地址" :label-width="formLabelWidth"
+      <el-form-item class="input-width" :label-width="formLabelWidth" label="所在地区">
+        <el-cascader
+          :options="cityList"
+          v-model="orgCityId1"
+          :props="cascaderObj"
+        >
+        </el-cascader>
+      </el-form-item>
+      <el-form-item class="input-width" label="详细地址" :label-width="formLabelWidth"
       >
         <el-input  v-model.string="form.orgAddress" ></el-input>
       </el-form-item>
@@ -23,10 +32,10 @@
         <el-input v-model.string="form.orgContact" auto-complete="off"></el-input>
       </el-form-item>
       <el-form-item class="input-width"  label="联系电话" :label-width="formLabelWidth" prop="orgPhone">
-        <el-input oninput="value=value.replace(/[^\d]/g,'')" v-model.string="form.orgPhone"
+        <el-input disabled oninput="value=value.replace(/[^\d]/g,'')" v-model.string="form.orgPhone"
                   auto-complete="off"></el-input>
       </el-form-item>
-      <el-form-item label="营业执照" :label-width="formLabelWidth">
+      <el-form-item label="营业执照(780*720,500K以内)" :label-width="formLabelWidth">
         <el-upload
           class="avatar-uploader"
           action="apiurl"
@@ -38,7 +47,7 @@
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </el-upload>
       </el-form-item>
-      <el-form-item label="证件照" :label-width="formLabelWidth">
+      <el-form-item label="证件照(450*320,500K以内)" :label-width="formLabelWidth">
         <el-upload
           class="avatar-uploader"
           action="apiurl"
@@ -58,6 +67,8 @@
 </template>
 
 <script>
+  import '../../../api/city.data'
+  import cityData3 from "../../../api/city.data";
   export default {
     data() {
       return {
@@ -77,6 +88,15 @@
           orgCard: '',
           orgContact:'',
           schoolId:'',
+          orgProvinceId:'',
+          orgCityId:'',
+          orgAreaId:'',
+        },
+        orgCityId1:[],
+        cityList:[],//城市列表
+        cascaderObj:{
+          value:'value',
+          label:'text'
         },
         orgBurl: null,
         orgCardUrl: null,
@@ -90,9 +110,12 @@
     mounted: function () {
     },
     created: function () {
-      this.user = JSON.parse(localStorage.getItem('diruserinfo'));
+      this.cityList = cityData3;
+      this.user = JSON.parse(localStorage.getItem('diruserinfosys'));
       this.form.orgUserId = this.user.suserId;
       this.form.schoolId = this.user.schoolId;
+      this.form.orgName = this.user.schoolName;
+      this.form.orgPhone = this.user.userPhone;
       this.getSchoolDetail()
    },
     methods: {
@@ -114,6 +137,18 @@
           }
         })
       },
+      //打开机构
+      openOrgIndex(){
+        this.$confirm('账号为'+ this.$store.state.user.user.userPhone +',默认密码"999999"!', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(async() => {
+          window.location.href = 'https://www.zz1819.com/org/'
+        }).catch(() => {
+
+        });
+      },
       //查询分校信息
       getSchoolDetail(){
         this.http.post('/queryOrgInfoBySchoolUserId', {suserId:this.user.suserId}).then(res => {
@@ -127,6 +162,14 @@
             this.orgBurl = res.data.orgBusLicUrl;
             this.orgCardUrl = res.data.orgCardUrl;
             this.isCheck = res.data.isCheck;
+            this.$nextTick(()=>{
+              if(res.data.orgCityId){
+                this.orgCityId1 = [res.data.orgProvinceId.toString(),res.data.orgCityId.toString(),res.data.orgAreaId.toString()]
+                console.log(this.orgCityId1)
+
+              }
+            })
+
           }
         })
       },
@@ -140,6 +183,10 @@
         //   orgCard: '',
         if (!this.form.orgName) {
           this.$errorMessage('请填写机构名称')
+          return;
+        }
+        if(this.orgCityId1.length < 3){
+          this.$errorMessage('请选择机构所在城市')
           return;
         }
         if (!this.form.orgAddress) {
@@ -162,6 +209,9 @@
           this.$errorMessage('请填写机构身份证信息')
           return;
         }
+        this.form.orgProvinceId = this.orgCityId1[0];
+        this.form.orgCityId = this.orgCityId1[1];
+        this.form.orgAreaId = this.orgCityId1[2];
         this.http.post('/saveOrgInfo', this.form).then(res => {
           if (res.code == 0) {
             this.$successMessage('已提交，等待审核')

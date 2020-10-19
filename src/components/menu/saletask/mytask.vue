@@ -169,7 +169,7 @@
     },
     created(){
       //设置获取业务员的嚣张身份
-      var user = JSON.parse(localStorage.getItem('diruserinfo'));
+      var user = JSON.parse(localStorage.getItem('diruserinfosys'));
       this.searchForm.schoolId = user.schoolId;
       this.searchForm.suserId = user.suserId;
       this.getSalerTaskList();

@@ -6,7 +6,7 @@ const state = {
   // z_custom_id:125,
   // token: '',
   //用户信息
-  user: JSON.parse(localStorage.getItem('diruserinfo')) || {},
+  user: JSON.parse(localStorage.getItem('diruserinfosys')) || {},
   redirect:'',
   param:{},
 

@@ -9,8 +9,8 @@
               <img src="./loginperson.png" alt="">
             </div>
             <div class="login-r">
-              <div class="login-title">太奇教育分销平台</div>
-              <p class="login-ps">新一代分销体系，为企业提供一站式</p>
+              <div class="login-title">元儒教育城产品管理后台</div>
+<!--              <p class="login-ps">新一代分销体系，为企业提供一站式</p>-->
 
               <ul class="login-form-item">
                 <li>
@@ -28,7 +28,7 @@
 
               </div>
               <div class="login-btn" @click="loginNow">登录</div>
-              <div class="commpany">Copyright@1998-2014 太奇教育 .All Rights Reserved</div>
+<!--              <div class="commpany">Copyright@1998-2014 元儒教育城 .All Rights Reserved</div>-->
             </div>
           </div>
         </div>
@@ -84,15 +84,15 @@
         this.$router.push('/userlogin')
       },
       loginNowFn(){
-        if(this.imgcode != this.identifyCode){
-          this.$errorMessage('图形验证码不正确')
-          return;
-        }
+        // if(this.imgcode != this.identifyCode){
+        //   this.$errorMessage('图形验证码不正确')
+        //   return;
+        // }
         this.http.post('/dir/userLoginSchoolUser',{userPhone:this.userPhone,userPwd:this.userPwd,loginType:1}).then(res=>{
           if(res.code == 0){
             this.$successMessage('登录成功！')
             this.setUser(res.data)
-            localStorage.setItem('diruserinfo',JSON.stringify(res.data))
+            localStorage.setItem('diruserinfosys',JSON.stringify(res.data))
             var _this = this;
             setTimeout(function () {
               _this.$router.push("/home");
@@ -112,9 +112,10 @@
           this.$errorMessage('请输入密码')
           return;
         }
-
-        let _this = this;
-        this.codeFlag = true;
+        this.loginNowFn();
+        //
+        // let _this = this;
+        // this.codeFlag = true;
 
       },
       randomNum(min, max) {

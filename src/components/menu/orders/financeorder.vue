@@ -41,9 +41,9 @@
         label="课程封面"
         sortable
         align="center">
-          <template slot-scope="scope">
-            <img style="width:100px;" :src="scope.row.imageUrl" alt="">
-          </template>
+        <template slot-scope="scope">
+          <img style="width:100px;" :src="scope.row.imageUrl" alt="">
+        </template>
 
       </el-table-column>
       <el-table-column
@@ -97,7 +97,7 @@
       }
     },
     created(){
-        this.getOrdersList();
+      this.getOrdersList();
     },
     methods:{
       //搜索订单列表

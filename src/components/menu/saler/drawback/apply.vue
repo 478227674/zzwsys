@@ -187,7 +187,7 @@
       }
     },
     created() {
-      this.searchForm.userId = JSON.parse(localStorage.getItem('diruserinfo')).suserId
+      this.searchForm.userId = JSON.parse(localStorage.getItem('diruserinfosys')).suserId
       this.getreoundList();
     },
     methods: {
@@ -259,7 +259,7 @@
           this.$errorMessage('请填写密码')
           return;
         }
-        var user = JSON.parse(localStorage.getItem('diruserinfo'))
+        var user = JSON.parse(localStorage.getItem('diruserinfosys'))
         this.saleobj.schoolId = user.schoolId;
         // this.saleobj.roleId = user.roleId;
         this.http.post('/school/saveSchoolSale', this.saleobj).then(res => {

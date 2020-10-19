@@ -53,7 +53,7 @@
     },
     methods: {
       getMenuData() {
-        let userData = JSON.parse(localStorage.getItem('diruserinfo'));
+        let userData = JSON.parse(localStorage.getItem('diruserinfosys'));
         if(userData){
           this.$nextTick(function () {
             var obj = {
@@ -98,7 +98,6 @@
   }
   .menu_bg img{
     display: block;
-    width: 90%;
     margin: 5px auto;
   }
   .el-menu{

@@ -361,7 +361,7 @@
         this.getstudentList();
         this.getSalerList();
         this.getplanList();
-        var user = JSON.parse(localStorage.getItem('diruserinfo'));
+        var user = JSON.parse(localStorage.getItem('diruserinfosys'));
         this.searchForm.schoolId = user.schoolId;
         if(user.isMaster == 0){
           this.searchForm.createSaleId = user.suserId;
@@ -383,7 +383,7 @@
 
       //获取业务员列表
       getSalerList(){
-        var user = JSON.parse(localStorage.getItem('diruserinfo'));
+        var user = JSON.parse(localStorage.getItem('diruserinfosys'));
         let obj = {
           pageSize:100,pageNum:this.pagenum,schoolId:user.schoolId
         }
@@ -526,7 +526,7 @@
             }
           }
         }
-        this.studentobj.schoolId = JSON.parse(localStorage.getItem('diruserinfo')).schoolId
+        this.studentobj.schoolId = JSON.parse(localStorage.getItem('diruserinfosys')).schoolId
         this.http.post('/school/saveSchoolStudent',this.studentobj).then(res=>{
           if(res.code == 0){
             this.$successMessage('添加学员成功')
@@ -574,7 +574,7 @@
             }
           }
         }
-        this.editstudent.schoolId = JSON.parse(localStorage.getItem('diruserinfo')).schoolId
+        this.editstudent.schoolId = JSON.parse(localStorage.getItem('diruserinfosys')).schoolId
         this.http.post('/school/updateSchoolStudent',this.editstudent ).then(res=>{
           if(res.code == 0){
             this.$successMessage('编辑学员成功')

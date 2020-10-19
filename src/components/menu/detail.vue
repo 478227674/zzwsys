@@ -162,7 +162,7 @@
         })
       },
       initPage(){
-        this.detailobj = JSON.parse(localStorage.getItem('diruserinfo'))
+        this.detailobj = JSON.parse(localStorage.getItem('diruserinfosys'))
         console.log(this.detailobj)
       },
       submitData(){

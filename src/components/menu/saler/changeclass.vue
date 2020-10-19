@@ -193,7 +193,7 @@
       this.getstudentList();
       this.getChangedList();
       this.inniPageData();
-      var user = JSON.parse(localStorage.getItem('diruserinfo'));
+      var user = JSON.parse(localStorage.getItem('diruserinfosys'));
       if(user.isMaster == 0){ //判断是否是校长
         this.searchForm.createSaleId = user.suserId;
       }

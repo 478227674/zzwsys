@@ -35,7 +35,7 @@
       </el-table-column>
       <el-table-column
         prop="taiqiType"
-        label="是否太奇学员"
+        label="是否元儒学员"
         align="center">
       </el-table-column>
 

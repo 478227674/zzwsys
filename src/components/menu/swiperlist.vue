@@ -221,7 +221,7 @@
         dialogFormVisible: false,
         dialogImageUrl: '',
         dialogVisible: false,
-        orgId:JSON.parse(localStorage.getItem('diruserinfo')).id,
+        orgId:JSON.parse(localStorage.getItem('diruserinfosys')).id,
         form: {
           orgId:'',
           imageId: '',

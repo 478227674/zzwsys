@@ -169,13 +169,13 @@
         editFlag:false,
         form: {
           typeId: '',
-          orgId:JSON.parse(localStorage.getItem('diruserinfo')).id,
+          orgId:JSON.parse(localStorage.getItem('diruserinfosys')).id,
           datumName:'',
           datumUrl:'',
         },
         editform: {
           typeId: '',
-          orgId:JSON.parse(localStorage.getItem('diruserinfo')).id,
+          orgId:JSON.parse(localStorage.getItem('diruserinfosys')).id,
           datumName:'',
           datumUrl:'',
           datumId:'',

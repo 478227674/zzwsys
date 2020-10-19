@@ -450,7 +450,7 @@
       }
     },
     created(){
-      this.searchForm.userId = JSON.parse(localStorage.getItem('diruserinfo')).suserId
+      this.searchForm.userId = JSON.parse(localStorage.getItem('diruserinfosys')).suserId
       this.getreoundList();
     },
     methods: {
@@ -522,7 +522,7 @@
       },
       //提交
       submitApply(){
-        var user = JSON.parse(localStorage.getItem('diruserinfo'));
+        var user = JSON.parse(localStorage.getItem('diruserinfosys'));
         this.apply.rUserId = user.suserId;
         this.apply.branchId = user.schoolId;
         if (!this.apply.rUserName) {

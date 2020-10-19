@@ -330,7 +330,7 @@
       }
     },
     created(){
-      var user = JSON.parse(localStorage.getItem('diruserinfo'));
+      var user = JSON.parse(localStorage.getItem('diruserinfosys'));
       if(user.schoolId){
         this.getobj.schoolId = user.schoolId;
         this.schoolId = user.schoolId;

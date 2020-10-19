@@ -106,7 +106,7 @@
       }
     },
     created(){
-      var user = JSON.parse(localStorage.getItem('diruserinfo'));
+      var user = JSON.parse(localStorage.getItem('diruserinfosys'));
       if(user.schoolId){
         this.sschoolId = user.schoolId;
       }

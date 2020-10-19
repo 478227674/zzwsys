@@ -124,7 +124,7 @@
     },
     created(){
       this.getOrdersList();
-      this.roleId = JSON.parse(localStorage.getItem('diruserinfo')).suserId
+      this.roleId = JSON.parse(localStorage.getItem('diruserinfosys')).suserId
 
     },
     methods:{

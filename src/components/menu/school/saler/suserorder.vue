@@ -90,7 +90,7 @@
       }
     },
     created(){
-//        var user = JSON.parse(localStorage.getItem('diruserinfo'));
+//        var user = JSON.parse(localStorage.getItem('diruserinfosys'));
 //        if(user.roleId == 6){
 //          this.searchForm.schoolId = user.schoolId;
 //        }else{
@@ -101,7 +101,7 @@
     methods:{
       //获取业务员列表
       getSalerList(){
-        var user = JSON.parse(localStorage.getItem('diruserinfo'))
+        var user = JSON.parse(localStorage.getItem('diruserinfosys'))
         this.searchForm.pageSize = 10;
         this.searchForm.pageNum = this.pagenum;
         this.searchForm.shareUserId = user.suserId;

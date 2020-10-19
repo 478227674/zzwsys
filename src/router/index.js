@@ -82,8 +82,13 @@ export default new Router({
           },
           {
             path: 'userlist',
-            component: resolve => require(['@/components/menu/userlist'], resolve),
+            component: resolve => require(['@/components/menu/usercenter/userlist'], resolve),
             name: '用户中心'
+          },
+          {
+            path: 'giveuser',
+            component: resolve => require(['@/components/menu/usercenter/giveuser'], resolve),
+            name: '分配用户'
           },
           {
             path: 'userlistsys',
@@ -178,6 +183,11 @@ export default new Router({
             name: '关于我们'
           },
           {
+            path: 'qsandb',
+            component: resolve => require(['@/components/menu/other/qsandb'], resolve),
+            name: '学员保障问题汇总'
+          },
+          {
             path: 'chatuserlist',
             component: resolve => require(['@/components/menu/chatuserlist'], resolve),
             name: '机构坐席管理'
@@ -196,6 +206,16 @@ export default new Router({
             path: 'schoolpower',
             component: resolve => require(['@/components/menu/power/schoolpower'], resolve),
             name: '分校权限分配'
+          },
+          {
+            path: 'schooltypes',
+            component: resolve => require(['@/components/menu/power/schooltypes'], resolve),
+            name: '营业范围'
+          },
+          {
+            path: 'orgindex',
+            component: resolve => require(['@/components/menu/other/orgindex'], resolve),
+            name: '营业范围'
           },
           {
             path: 'knowledge',
@@ -629,7 +649,21 @@ export default new Router({
             component: resolve => require(['@/components/menu/other/browserhisbyid'], resolve),
             name: '查询浏览记录'
           },
-
+          {
+            path: 'procollect',
+            component: resolve => require(['@/components/menu/other/procollect'], resolve),
+            name: '查看课程收藏'
+          },
+          {
+            path: 'orgcollect',
+            component: resolve => require(['@/components/menu/other/orgcollect'], resolve),
+            name: '查看课程收藏'
+          },
+          {
+            path: 'audtionuser',
+            component: resolve => require(['@/components/menu/other/audtionuser'], resolve),
+            name: '预约试听列表'
+          },
           {
             path: 'searchuserorders',
             component: resolve => require(['@/components/menu/school/searchuserorders'], resolve),
@@ -687,6 +721,11 @@ export default new Router({
             name: '分配订单'
           },
           {
+            path: 'ordersys',
+            component: resolve => require(['@/components/menu/orders/ordersys'], resolve),
+            name: '订单系统'
+          },
+          {
             path: 'partnerlist',
             component: resolve => require(['@/components/menu/partner/partnerlist'], resolve),
             name: '合伙人管理'
@@ -695,6 +734,56 @@ export default new Router({
             path: 'partnermoney',
             component: resolve => require(['@/components/menu/partner/partnermoney'], resolve),
             name: '合伙人佣金'
+          },
+
+
+          {
+            path: 'agent',
+            component: resolve => require(['@/components/menu/agent/agent'], resolve),
+            name: '代理商管理'
+          },
+          {
+            path: 'agent_order_list',
+            component: resolve => require(['@/components/menu/agent/agent_order_list'], resolve),
+            name: '订单列表'
+          },
+          {
+            path: 'message_list',
+            component: resolve => require(['@/components/menu/agent/message_list'], resolve),
+            name: '信息列表'
+          },
+          {
+            path: 'agentorg',
+            component: resolve => require(['@/components/menu/agent/agentorg'], resolve),
+            name: '代理商机构'
+          },
+
+          {
+            path: 'agentorgusers',
+            component: resolve => require(['@/components/menu/agent/agentorgusers'], resolve),
+            name: '代理商机构用户'
+          },
+          {
+            path: 'agentorgorders',
+            component: resolve => require(['@/components/menu/agent/agentorgorders'], resolve),
+            name: '机构订单'
+          },
+          {
+            path: 'agentoforg',
+            component: resolve => require(['@/components/menu/agent/agentoforg'], resolve),
+            name: '机构列表'
+          },
+
+
+          {
+            path: 'messager',
+            component: resolve => require(['@/components/menu/sendpower/messager'], resolve),
+            name: '信息员管理'
+          },
+          {
+            path: 'businesser',
+            component: resolve => require(['@/components/menu/sendpower/businesser'], resolve),
+            name: '运营员管理'
           },
       ]
     }

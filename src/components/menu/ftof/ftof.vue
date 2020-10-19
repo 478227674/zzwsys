@@ -158,14 +158,14 @@
         >
           <el-input oninput = "value=value.replace(/[^\d.]/g,'')"  v-model.string="form.commissionRebate" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="是否可使用质正币" :label-width="formLabelWidth">
+        <el-form-item label="是否可使用元儒币" :label-width="formLabelWidth">
           <template>
             <el-radio v-model="form.isCoin" checked label="1">是</el-radio>
             <el-radio v-model="form.isCoin" label="0">否</el-radio>
           </template>
         </el-form-item>
         <el-form-item
-          label="质正币上限"
+          label="元儒币上限"
           :label-width="formLabelWidth"
           prop="coinLimit"
           v-show="form.isCoin==1"
@@ -377,14 +377,14 @@
         >
           <el-input oninput = "value=value.replace(/[^\d.]/g,'')"  v-model.string="editForm.commissionRebate" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="是否可使用质正币" :label-width="formLabelWidth">
+        <el-form-item label="是否可使用元儒币" :label-width="formLabelWidth">
           <template>
             <el-radio v-model="editForm.isCoin" label="1">是</el-radio>
             <el-radio v-model="editForm.isCoin" label="0">否</el-radio>
           </template>
         </el-form-item>
         <el-form-item
-          label="质正币上限"
+          label="元儒币上限"
           :label-width="formLabelWidth"
           prop="coinLimit"
           v-show="editForm.isCoin==1"
@@ -1135,7 +1135,7 @@
         }
         if(this.form.isCoin == 1){
             if(this.form.coinLimit%1000 != 0 ){
-              this.$errorMessage('质正币上限数额必须是1000的倍数')
+              this.$errorMessage('元儒币上限数额必须是1000的倍数')
               return;
             }
         }
@@ -1192,7 +1192,7 @@
         }
         if(this.editForm.isCoin == 1){
           if(this.editForm.coinLimit%1000 != 0 ){
-            this.$errorMessage('质正币上限数额必须是1000的倍数')
+            this.$errorMessage('元儒币上限数额必须是1000的倍数')
             return;
           }
         }

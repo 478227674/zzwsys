@@ -115,8 +115,8 @@
     },
     created(){
 
-      this.roleId = JSON.parse(localStorage.getItem('diruserinfo')).roleId;
-      this.searchFrom.schoolId = JSON.parse(localStorage.getItem('diruserinfo')).schoolId;
+      this.roleId = JSON.parse(localStorage.getItem('diruserinfosys')).roleId;
+      this.searchFrom.schoolId = JSON.parse(localStorage.getItem('diruserinfosys')).schoolId;
 
       this.getOrdersList();
       this.getSalerList();
@@ -153,7 +153,7 @@
       },
       //获取业务员列表
       getSalerList(){
-        var user = JSON.parse(localStorage.getItem('diruserinfo'));
+        var user = JSON.parse(localStorage.getItem('diruserinfosys'));
         this.http.post('/school/querySchoolSaleList',{pageSize:100,pageNum:this.pagenum,schoolId:user.schoolId,roleId:7}).then(res=>{
           if(res.code == 0){
             this.salerList = res.data.list;

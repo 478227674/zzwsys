@@ -152,7 +152,7 @@
       }
     },
     created(){
-        var user = JSON.parse(localStorage.getItem('diruserinfo'));
+        var user = JSON.parse(localStorage.getItem('diruserinfosys'));
         if(user.roleId == 6){
           this.searchForm.schoolId = user.schoolId;
         }else{
