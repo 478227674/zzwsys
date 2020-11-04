@@ -785,6 +785,46 @@ export default new Router({
             component: resolve => require(['@/components/menu/sendpower/businesser'], resolve),
             name: '运营员管理'
           },
+          {
+            path: 'enterprise',
+            component: resolve => require(['@/components/menu/sys/enterprise'], resolve),
+            name: '企业认证'
+          },
+          {
+            path: 'money_rate',
+            component: resolve => require(['@/components/menu/sys/money_rate'], resolve),
+            name: '分账比例'
+          },
+          {
+            path: 'org_users',
+            component: resolve => require(['@/components/menu/sys/org_users'], resolve),
+            name: '查看机构账号'
+          },
+          {
+            path: 'sys_orders',
+            component: resolve => require(['@/components/menu/sys/sys_orders'], resolve),
+            name: '代理商分账'
+          },
+          {
+            path: 'org_userslist',
+            component: resolve => require(['@/components/menu/sys/org_userslist'], resolve),
+            name: '查看机构账号'
+          },
+          {
+            path: 'phone_list',
+            component: resolve => require(['@/components/menu/phone/phone_list'], resolve),
+            name: '400列表'
+          },
+          {
+            path: 'phone_his',
+            component: resolve => require(['@/components/menu/phone/phone_his'], resolve),
+            name: '400记录'
+          },
+          {
+            path: 'phone_tel',
+            component: resolve => require(['@/components/menu/phone/phone_tel'], resolve),
+            name: '400座机'
+          },
       ]
     }
   ]

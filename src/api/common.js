@@ -4,7 +4,7 @@
 import axios from 'axios';
 import qs from 'qs';
 import configUrl from '../config';
-import { Loading } from 'element-ui';
+import { Loading,Message } from 'element-ui';
 const Common = {};
 Date.prototype.format = function(format) {
   var date = {
@@ -55,10 +55,18 @@ Common.uploadImg = function (data) {
           loadingInstance.close()
           reject(response)
         }
+      }).catch(error => {
+        Message({
+          message:'上传失败，请检查图片后重新上传',
+          type: 'error'
+        })
+        loadingInstance.close()
+        reject(error)
       })
     };
   });
 }
+
 //成功弹窗
 Common.sMessage = function (string) {
   this.$message({

@@ -167,7 +167,7 @@
             :total="total2">
           </el-pagination>
         </el-tab-pane>
-        <el-tab-pane label="后台录入" name="third">
+        <el-tab-pane label="乐语咨询" name="third">
           <el-table
             :data="list3"
             style="width: 100%">

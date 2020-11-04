@@ -57,9 +57,14 @@
         align="center"
       >
         <template slot-scope="scope">
+          <el-button @click="moveOrgUrl(scope.row)" type="text" size="small">
+            跳转机构
+          </el-button>
           <el-button v-if="scope.row.isDelete == 0" @click="deleteAgent(scope.row)" type="text" size="small">停用</el-button>
           <el-button v-if="scope.row.isDelete == 1" @click="backup(scope.row)" type="text" size="small">恢复</el-button>
           <!--<el-button type="text" size="small">编辑</el-button>-->
+
+
         </template>
       </el-table-column>
     </el-table>
@@ -137,6 +142,18 @@
 
     },
     methods: {
+      //信息员操作直接登录org账号后跳转org后台管理
+      moveOrgUrl(data){
+        // http://192.168.1.209:8090/tqdir_war_exploded/org/orgLogin/newLogin
+        // https://www.zz1819.com/tqshoop/org/orgLogin/newLogin
+        this.http.post('https://www.zz1819.com/tqshoop/org/orgLogin/newLogin', {orgId:data.orgId,type:1,suserId:this.$store.state.user.user.suserId}).then(res => {
+          if (res.code == 0) {
+            localStorage.setItem('userinfo',JSON.stringify(res.data));
+            window.open('https://www.zz1819.com/org/#/home/workPlace')
+          }
+        })
+
+      },
     //停用代理商
       deleteAgent(data){
         this.$confirm('此操作将关闭此机构下所有数据, 是否继续?', '提示', {

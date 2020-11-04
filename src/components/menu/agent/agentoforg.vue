@@ -82,6 +82,8 @@
           <el-button v-if="scope.row.isDelete == 0" @click="moveOrgToMessage(scope.row)" type="text" size="small">
             转移给其他信息员
           </el-button>
+
+
           <el-button v-if="scope.row.isDelete == 1" @click="backup(scope.row)" type="text" size="small">恢复</el-button>
           <!--<el-button type="text" size="small">编辑</el-button>-->
         </template>
@@ -202,6 +204,7 @@
           }
         })
       },
+
       //恢复代理商
       backup(data) {
         this.$confirm('此操作将恢复机构下所有数据, 是否继续?', '提示', {

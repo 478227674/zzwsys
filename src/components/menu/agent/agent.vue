@@ -315,7 +315,6 @@
     methods:{
       //筛选按钮事件
       searchAgent(){
-        console.log(this.searchIds);
         if(this.searchIds.length > 0){
           this.searchForm.province = this.searchIds[0];
           this.searchForm.city = this.searchIds[1];
@@ -417,7 +416,7 @@
         })
       },
       handleCurrentChangeAgent(v){
-        this.pageNum = v;
+        this.searchForm.pageNum = v;
         this.getAgentList();
       },
       //获取代理商列表

@@ -57,7 +57,7 @@
           <template slot-scope="scope">
             <span v-show="scope.row.type == 1">平台预约</span>
             <span v-show="scope.row.type == 2">电话接入</span>
-            <span v-show="scope.row.type == 3">后台录入</span>
+            <span v-show="scope.row.type == 3">乐语咨询</span>
           </template>
       </el-table-column>
       <el-table-column
@@ -166,7 +166,7 @@
         searchForm:{
           phone:'',
           orgId:'',
-          type:'', //根据类型查询 1平台预约 2电话接入 3后台录入
+          type:'', //根据类型查询 1平台预约 2电话接入 3乐语咨询
           productId:'',
           productType:'',
           isHandle:'', //根据是否处理查询 0未处理 1已处理
