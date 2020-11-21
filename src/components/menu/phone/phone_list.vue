@@ -15,80 +15,31 @@
         </template>
       </el-table-column>
       <el-table-column
-        prop="nickname"
-        label="号码"
-        align="center">
-      </el-table-column>
-      <el-table-column
-        prop="phone"
+        prop="text"
         label="所属机构"
         align="center">
       </el-table-column>
       <el-table-column
-        prop="type"
-        label="是否使用"
+        prop="phone"
+        label="400分机号"
         align="center">
-          <template slot-scope="scope">
-            <span v-show="scope.row.type == 1">平台预约</span>
-            <span v-show="scope.row.type == 2">电话接入</span>
-            <span v-show="scope.row.type == 3">乐语咨询</span>
-          </template>
       </el-table-column>
       <el-table-column
-        prop="updateTime"
-        label="创建日期"
-
+        prop="id"
+        label="ID"
         align="center">
       </el-table-column>
-<!--      <el-table-column-->
-<!--        label="操作"-->
-<!--        type="index"-->
-<!--        align="center"-->
-<!--        width="180"-->
-<!--      >-->
-<!--        <template slot-scope="scope">-->
-<!--          <el-button @click="updateOrdersSys(scope.row)" type="text" size="small">更新跟进记录</el-button>-->
-<!--        </template>-->
-<!--      </el-table-column>-->
+      <el-table-column
+        label="操作"
+        type="index"
+        align="center"
+        width="180"
+      >
+        <template slot-scope="scope">
+          <el-button @click="deletePhone(scope.row)" type="text" size="small">删除分机</el-button>
+        </template>
+      </el-table-column>
     </el-table>
-    <el-pagination
-      @current-change="handleCurrentChangeSys"
-      :current-page="searchForm.pageNum"
-      layout="total, prev, pager, next, jumper"
-      :total="total">
-    </el-pagination>
-    <el-dialog title="更新跟进记录" width="50%" :visible.sync="updateFlag">
-      <el-form   :model="updateObj">
-        <el-form-item label="学员手机号">
-          <el-input   v-model="updateObj.phone" auto-complete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="学员昵称(可为空)">
-          <el-input   v-model="updateObj.nickname" auto-complete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="所属机构" >
-          <el-input style="width: 200px;"  v-model="orgName" auto-complete="off"></el-input>
-          <el-button @click="searchOrgList" type="primary">搜索</el-button>
-        </el-form-item>
-        <el-form-item label="选择机构" v-if="orgList.length > 0">
-          <el-select  filterable v-model="updateObj.orgId" placeholder="请选择处理方式" >
-            <el-option
-              v-for="(item,index) in orgList"
-              :key="item.id"
-              :label="item.orgName"
-              :value="item.id"
-            >
-            </el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="跟进备注">
-          <el-input v-model="updateObj.remark" auto-complete="off"></el-input>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="updateFlag = false">取 消</el-button>
-        <el-button type="primary" @click="submitUpdateUserOrders">确 定</el-button>
-      </div>
-    </el-dialog>
 
   </div>
 </template>
@@ -129,46 +80,21 @@
         this.getOrdersList();
     },
     methods:{
-      searchOrgList(){
-        if(!this.orgName){
-          this.$errorMessage('请输入名称查询')
-          return;
-        }
-        this.http.post('/dir/queryOrgInfoArray',{orgName:this.orgName}).then(res=>{
-          if(res.code == 0){
-
-            this.orgList = res.data;
-          }else{
-            this.orgList = [];
-            this.$errorMessage('没有查到相关机构')
-          }
-        })
+      deletePhone(data){
+        this.$confirm('确定删除此条数据吗', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(async () => {
+          await this.deletePhoneFn(data);
+        }).catch(() => {
+        });
       },
-      //更新按钮事件
-      updateOrdersSys(data){
-        this.updateObj.id = data.id;
-        this.updateObj.nickname = data.nickname || '';
-        this.updateFlag = true;
-      },
-      //提交更新跟进记录
-      submitUpdateUserOrders(){
-        if(this.updateObj.phone && this.updateObj.phone.length != 11){
-            this.$errorMessage('请填写正确学员手机号码');
-            return;
-        }
-        if(!this.updateObj.orgId){
-          this.$errorMessage('请选择所属机构');
-          return;
-        }
-        if(!this.updateObj.remark){
-          this.$errorMessage('请填写备注');
-          return;
-        }
-        this.http.post('/dir/saveDirUserFollow',this.updateObj).then(res=>{
+      deletePhoneFn(data){
+        this.http.post('/api/deleteSysZerroById',{deptId:data.id}).then(res=>{
           if(res.code == 0){
-            this.$successMessage('已更新跟进记录');
+            this.$successMessage('已删除')
             this.getOrdersList();
-            this.updateFlag = false;
           }
         })
       },
@@ -181,19 +107,11 @@
       getOrdersList(){
         this.http.post('/api/selectSysZerroAll',this.searchForm).then(res=>{
           if(res.code == 0){
-            for(var i=0;i<res.data.list.length;i++){
-              res.data.list[i].updateTime = res.data.list[i].updateTime ?this.formatTimeToDay(res.data.list[i].updateTime) : '暂无跟进记录'
-            }
-            this.tableData = res.data.list;
-            this.total = res.data.total;
+            this.tableData = res.data;
           }
         })
       },
 
-      handleCurrentChangeSys(val){
-        this.searchForm.pageNum = val;
-        this.getOrdersList();
-      },
     },
   }
 </script>

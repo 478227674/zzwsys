@@ -9,7 +9,7 @@
               <img src="./loginperson.png" alt="">
             </div>
             <div class="login-r">
-              <div class="login-title">元儒教育城产品管理后台</div>
+              <div class="login-title">元儒教育城管理后台</div>
 <!--              <p class="login-ps">新一代分销体系，为企业提供一站式</p>-->
 
               <ul class="login-form-item">

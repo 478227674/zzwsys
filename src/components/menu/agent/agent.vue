@@ -2,7 +2,7 @@
   <div>
     <div style="text-align: left;margin-left: 40px">
       <el-button @click="addAgentFlag = true" style="margin-bottom: 10px;" icon="el-icon-circle-plus-outline">
-        添加代理商
+        添加运营商
       </el-button>
       <el-date-picker
         value-format="yyyy-mm-dd HH:mm:ss"
@@ -26,7 +26,7 @@
 
       <el-table-column
         prop="suserId"
-        label="代理商Id"
+        label="运营商Id"
         align="center">
       </el-table-column>
 
@@ -100,8 +100,8 @@
       layout="total, prev, pager, next, jumper"
       :total="total">
     </el-pagination>
-    <!--添加代理商-->
-    <el-dialog title="添加代理商" :visible.sync="addAgentFlag">
+    <!--添加运营商-->
+    <el-dialog title="添加运营商" :visible.sync="addAgentFlag">
       <el-form :model="agentObj">
         <el-form-item
           label="用户名"
@@ -153,8 +153,8 @@
         <el-button type="primary" @click="submitAddAgent">确 定</el-button>
       </div>
     </el-dialog>
-    <!--查看代理商机构列表-->
-    <el-dialog width="80%" title="代理商机构列表" :visible.sync="seeFlag">
+    <!--查看运营商机构列表-->
+    <el-dialog width="80%" title="运营商机构列表" :visible.sync="seeFlag">
       <el-input style="width: 200px;" placeholder="请输入手机号查询" v-model.string="orgSearch.orgPhone" auto-complete="off"></el-input>
       <el-input style="width: 200px;" placeholder="请输入机构名称" v-model.string="orgSearch.orgName" auto-complete="off"></el-input>
       <el-button @click="searchOrg" type="primary">搜索</el-button>
@@ -197,7 +197,7 @@
     </el-dialog>
     <el-dialog title="转移机构" width="50%" :visible.sync="moveFlag">
       <el-form>
-        <el-form-item label="选择代理商">
+        <el-form-item label="选择运营商">
           <el-select filterable v-model="suserId" placeholder="请选择处理方式">
             <el-option
               v-for="(item,index) in moveList"
@@ -214,7 +214,7 @@
         <el-button type="primary" @click="submitMoveOrg">确 定</el-button>
       </div>
     </el-dialog>
-    <!--延期代理商-->
+    <!--延期运营商-->
     <el-dialog title="延期到期时间" :visible.sync="timeFlag">
       <el-form :model="extimeObj">
         <el-form-item
@@ -259,7 +259,7 @@
           userName:'',//用户名
           passWord:'',//密码
           userPhone:'',//手机号
-          roleId:'17',//身份ID 代理商
+          roleId:'17',//身份ID 运营商
           nickname:'',
           expireTime:'',
           province:'',
@@ -322,7 +322,7 @@
         this.searchForm.pageNum = 1;
         this.getAgentList()
       },
-      //延期代理商到期时间
+      //延期运营商到期时间
       updateAgentExtime(data){
         this.extimeObj.suserId = data.suserId;
         this.timeFlag = true;
@@ -348,7 +348,7 @@
       },
       submitMoveOrg() {
         if(!this.suserId){
-          this.$errorMessage('请选择代理商')
+          this.$errorMessage('请选择运营商')
           return;
         }
         this.http.post('/dir/changeDirSchoolUser',{orgId:this.moveOrgId,createUserId:this.suserId}).then(res=>{
@@ -363,7 +363,7 @@
         this.orgSearch.pageNum = 1;
         this.getOrgListFn();
       },
-      //根据代理商获取机构列表
+      //根据运营商获取机构列表
       getOrgList(data){
         this.seeFlag = true;
         this.orgSearch.userId = data.suserId;
@@ -386,7 +386,7 @@
         this.orgSearch.pageNum = v;
         this.getOrgList();
       },
-      //添加代理商
+      //添加运营商
       submitAddAgent(){
         if(!this.agentObj.userName){
           this.$errorMessage('请输入用户名')
@@ -419,7 +419,7 @@
         this.searchForm.pageNum = v;
         this.getAgentList();
       },
-      //获取代理商列表
+      //获取运营商列表
       getAgentList(){
         this.http.post('/dir/queryDirSchoolUser',this.searchForm).then(res=>{
           if(res.code == 0){
@@ -433,9 +433,9 @@
           }
         })
       },
-      //停用代理商
+      //停用运营商
       deleteAgent(data){
-        this.$confirm('此操作将关闭此代理商下所有数据, 是否继续?', '提示', {
+        this.$confirm('此操作将关闭此运营商下所有数据, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
@@ -453,9 +453,9 @@
           }
         })
       },
-      //恢复代理商
+      //恢复运营商
       backup(data){
-        this.$confirm('此操作将恢复代理商下所有数据, 是否继续?', '提示', {
+        this.$confirm('此操作将恢复运营商下所有数据, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'

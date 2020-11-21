@@ -740,7 +740,7 @@ export default new Router({
           {
             path: 'agent',
             component: resolve => require(['@/components/menu/agent/agent'], resolve),
-            name: '代理商管理'
+            name: '运营商管理'
           },
           {
             path: 'agent_order_list',
@@ -755,13 +755,13 @@ export default new Router({
           {
             path: 'agentorg',
             component: resolve => require(['@/components/menu/agent/agentorg'], resolve),
-            name: '代理商机构'
+            name: '运营商机构'
           },
 
           {
             path: 'agentorgusers',
             component: resolve => require(['@/components/menu/agent/agentorgusers'], resolve),
-            name: '代理商机构用户'
+            name: '运营商机构用户'
           },
           {
             path: 'agentorgorders',
@@ -803,7 +803,7 @@ export default new Router({
           {
             path: 'sys_orders',
             component: resolve => require(['@/components/menu/sys/sys_orders'], resolve),
-            name: '代理商分账'
+            name: '运营商分账'
           },
           {
             path: 'org_userslist',
@@ -819,6 +819,11 @@ export default new Router({
             path: 'phone_his',
             component: resolve => require(['@/components/menu/phone/phone_his'], resolve),
             name: '400记录'
+          },
+          {
+            path: 'phone_no',
+            component: resolve => require(['@/components/menu/phone/phone_no'], resolve),
+            name: '400未接'
           },
           {
             path: 'phone_tel',

@@ -184,7 +184,7 @@
         this.moveFlag = true;
         this.moveObj.orgId = data.orgId;
       },
-      //停用代理商
+      //停用运营商
       deleteAgent(data) {
         this.$confirm('此操作将关闭此机构下所有数据, 是否继续?', '提示', {
           confirmButtonText: '确定',
@@ -205,7 +205,7 @@
         })
       },
 
-      //恢复代理商
+      //恢复运营商
       backup(data) {
         this.$confirm('此操作将恢复机构下所有数据, 是否继续?', '提示', {
           confirmButtonText: '确定',
@@ -232,7 +232,7 @@
         this.getOrgListFn();
       },
 
-      //根据代理商获取机构列表
+      //根据运营商获取机构列表
       getOrgListFn() {
         this.http.post('/dir/queryDirOrgBySchoolUser3', this.orgSearch).then(res => {
           if (res.code == 0) {

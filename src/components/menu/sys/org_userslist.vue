@@ -142,7 +142,7 @@
         this.orgSearch.pageNum = 1;
         this.getmessageListFn()
       },
-      //获取代理商下的机构的所有订单
+      //获取运营商下的机构的所有订单
       getmessageListFn(){
         this.orgSearch.suserId = this.$store.state.user.user.suserId;
         this.http.post('/ypay/queryAccountAll',this.orgSearch).then(res=>{

@@ -375,7 +375,7 @@
         })
 
       },
-      //根据代理商获取机构列表
+      //根据运营商获取机构列表
       getOrgListFn(){
         this.http.post('/dir/querySysSchoolUserorg',this.orgSearch).then(res=>{
           if(res.code == 0){

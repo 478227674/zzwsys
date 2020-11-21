@@ -6,8 +6,8 @@
       <el-form-item label="平台占比(小数点)" :label-width="formLabelWidth">
         <el-input style="width: 200px" v-model="rateObj.sysBonus" placeholder="平台占比(小数点)" auto-complete="off"></el-input>
       </el-form-item>
-      <el-form-item label="代理商占比(小数点)" :label-width="formLabelWidth">
-        <el-input style="width: 200px" v-model="rateObj.dirBonus" placeholder="代理商占比(小数点)" auto-complete="off"></el-input>
+      <el-form-item label="运营商占比(小数点)" :label-width="formLabelWidth">
+        <el-input style="width: 200px" v-model="rateObj.dirBonus" placeholder="运营商占比(小数点)" auto-complete="off"></el-input>
       </el-form-item>
       <el-form-item label="机构占比(小数点)" :label-width="formLabelWidth">
         <el-input style="width: 200px" v-model="rateObj.orgBonus" placeholder="机构占比(小数点)" auto-complete="off"></el-input>
@@ -44,7 +44,7 @@
           return;
         }
         if(!this.rateObj.dirBonus){
-          this.$errorMessage('请输入代理商占比')
+          this.$errorMessage('请输入运营商占比')
           return;
         }
         if(!this.rateObj.orgBonus){
